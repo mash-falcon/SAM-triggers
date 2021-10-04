@@ -16,8 +16,9 @@ jobs:
           aws-region: us-west-1
       # sam build 
       - run: sam build --use-container --build-image Function1=amazon/aws-sam-cli-build-image-python3.9
+      - run: sam package --output-template-file my-sam-app-compiled-template.yaml --s3-bucket  ash-s3bucket-1
 
 # Run Unit tests- Specify unit tests here 
 
 # sam deploy
-      - run: sam deploy --template-file template.yaml --stack-name sam-hello-world --s3-bucket ash-s3bucket-1 --capabilities CAPABILITY_IAM --region us-west-1
+      - run: sam deploy --template-file  my-sam-app-compiled-template.yaml --stack-name sam-hello-world --s3-bucket ash-s3bucket-1 --capabilities CAPABILITY_IAM --region us-west-1
